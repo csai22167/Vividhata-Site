@@ -1,6 +1,6 @@
 html,
 body {
-    font-family: verdana;
+    font-family: 'Montserrat';
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
     height: 100%;
@@ -9,25 +9,43 @@ body {
     background-color: #1e1e1e;
 }
 
-nav-item{
+.nav-item {
     font-weight: bold;
 }
 
 .nav-link {
     color: #fff;
-    background-color: #3b2823;
-    border: 1px solid #ffeb3b;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: bolder;
     padding: 10px;
     width: 150px;
     border-radius: 25px;
     margin: 0 10px;
     text-align: center;
-    transition: background-color 0.3s ease;
+    background: none;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: #ffeb3b;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
 }
 
 .nav-link:hover {
-    background-color: #ffeb3b;
+    color: #ffeb3b;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
 }
 
 .logo {
@@ -36,8 +54,6 @@ nav-item{
     border-radius: 50%;
     object-fit: cover;
 }
-
-
 
 @keyframes rotate {
     from {
@@ -55,6 +71,7 @@ nav-item{
     animation: rotate 20s linear infinite;
 }
 
+/* LANDING SECTION __ MAIN PAGE */
 
 .section {
     scroll-snap-align: start;
@@ -74,13 +91,10 @@ nav-item{
     width: calc(60vw);
     height: calc((100vw - 160px) * 9 / 16);
     max-height: calc(35vw);
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 2px solid #fff;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
     transform: scale(0.5);
 }
 
@@ -103,12 +117,13 @@ nav-item{
 
 .title-box {
     position: absolute;
-    background-color: rgb(255, 235, 59);
-    color: #000;
+    text-align: right;
+    color: rgb(255, 255, 255);
     padding: 10px 20px;
     border-radius: 10px;
-    font-size: 2rem;
-    top: 22%;
+    font-size: 3rem;
+    font-weight: bolder;
+    top: 28%;
     left: -100%;
     transform: translate(0, -50%);
     transition: all 1s ease-in-out;
@@ -116,29 +131,54 @@ nav-item{
 }
 
 .section.active .title-box {
-    left: 23%;
+    left: 6%;
     transition: all 1s ease-in-out;
 }
 
 .note-box {
-    position: fixed;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #000;
+    text-align: justify;
+    position: absolute;
+    background-color: transparent;
+    color: white;
     padding: 15px 25px;
-    border-radius: 10px;
     font-size: 1rem;
     bottom: -100%;
     right: 5%;
     width: 20vw;
     z-index: 2;
+    border: 2px solid white;
+    transform: translateY(50%);
 }
 
 .section.active .note-box {
-    bottom: 15%;
+    bottom: 50%;
     right: 10%;
     transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
+    transform: translateY(50%);
 }
+
+
+
+.image-box {
+    height: 15vw;
+    width: 8vw;
+    background-image: url('assets/goddess.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: -100%;
+    left: 17%;
+    transition: bottom 0.4s ease;
+    z-index: 2;
+    opacity: 0;
+}
+
+.section.active .image-box {
+    bottom: 35%;
+    opacity: 1;
+}
+
 
 
 
@@ -147,27 +187,115 @@ nav-item{
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    height: 0; 
-    background-color: white; 
-    animation: grow 2s ease-in-out infinite; 
-    bottom: 0; 
+    height: 0;
+    background-color: white;
+    animation: grow 2s ease-in-out infinite;
+    bottom: 0;
 }
 
 @keyframes grow {
     0% {
-        height: 0vh; 
-        bottom: 4vh; 
+        height: 0vh;
+        bottom: 4vh;
     }
+
     50% {
-        height: 4vh; 
-        bottom: 0vh; 
+        height: 4vh;
+        bottom: 0vh;
     }
+
     80% {
-        height: 0vh; 
-        bottom: 0vh; 
+        height: 0vh;
+        bottom: 0vh;
     }
 }
 
+.landing-box {
+    background-image: url(assets/landingBg.jpeg);
+    background-position: center;
+    opacity: 0.9;
+}
 
+.vertical-words {
+    font-size: 60px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0;
+    transform: translateY(100%) rotate(-90deg);
+    animation: slideUp 0.5s forwards;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    text-align: left;
+}
 
+.vertical-words span {
+    display: block;
+}
 
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(-90deg);
+    }
+}
+
+/* HOD SECTION __ MAIN PAGE */
+
+.hod-banner-box {
+    background-image: url(assets/pippalSirBanner.jpeg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+}
+
+.marquee {
+    position: absolute;
+    bottom: 5vw;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+}
+
+.marquee p {
+    display: inline-block;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.hod-box {
+    background-image: url(assets/hodSirPfp.jpeg);
+    height: 15vw;
+    width: 8vw;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: -100%;
+    left: 22.5%;
+    transition: bottom 0.4s ease;
+    z-index: 2;
+    opacity: 0;
+}
+
+.section.active .hod-box {
+    bottom: 35%;
+    opacity: 1;
+}
